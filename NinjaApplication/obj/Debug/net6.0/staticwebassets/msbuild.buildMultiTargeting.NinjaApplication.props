@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NinjaApplication.props" />
+</Project>
