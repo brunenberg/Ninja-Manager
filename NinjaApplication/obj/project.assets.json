@@ -11128,23 +11128,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wbrun\\.nuget\\packages\\": {},
+    "C:\\Users\\joris\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wbrun\\source\\repos\\NinjaApplication\\NinjaApplication\\NinjaApplication\\NinjaApplication.csproj",
+      "projectUniqueName": "C:\\Users\\joris\\Documents\\GitHub\\prg5-eindopdracht-2324-wouter-joris\\NinjaApplication\\NinjaApplication.csproj",
       "projectName": "NinjaApplication",
-      "projectPath": "C:\\Users\\wbrun\\source\\repos\\NinjaApplication\\NinjaApplication\\NinjaApplication\\NinjaApplication.csproj",
-      "packagesPath": "C:\\Users\\wbrun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wbrun\\source\\repos\\NinjaApplication\\NinjaApplication\\NinjaApplication\\obj\\",
+      "projectPath": "C:\\Users\\joris\\Documents\\GitHub\\prg5-eindopdracht-2324-wouter-joris\\NinjaApplication\\NinjaApplication.csproj",
+      "packagesPath": "C:\\Users\\joris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joris\\Documents\\GitHub\\prg5-eindopdracht-2324-wouter-joris\\NinjaApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\wbrun\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\joris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
