@@ -9,6 +9,7 @@ namespace NinjaApplication.Models
     public class InventoryItem
     {
         [Key]
+        [Column("Ninja_id")]
         public int NinjaId { get; set; }
         public Ninja Ninja { get; set; }
 

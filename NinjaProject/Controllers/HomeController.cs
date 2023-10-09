@@ -22,9 +22,8 @@ namespace NinjaProject.Controllers
                 .Include(e => e.Inventory)
                 .ThenInclude(e => e.Gear);
 
-            return Content(ninjas.FirstOrDefault().Inventory.FirstOrDefault().Gear.Name.ToString());
-
             return View();
+
         }
 
         public IActionResult Privacy()
