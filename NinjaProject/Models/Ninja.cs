@@ -21,7 +21,7 @@ namespace NinjaApplication.Models
         [Column("gold")]
         public int Gold { get; set; }
 
-        public List<InventoryItem> Inventory { get; set; }
+        public List<InventoryItem>? Inventory { get; set; }
 
         /*public int TotalStrength => Inventory?.Sum(item => item.Strength) ?? 0;
         public int TotalIntelligence => Inventory?.Sum(item => item.Intelligence) ?? 0;
