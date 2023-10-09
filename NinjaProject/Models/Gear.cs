@@ -40,7 +40,7 @@ namespace NinjaApplication.Models
         [Column("agility")]
         public int Agility { get; set; }
 
-        public List<InventoryItem> Ninjas { get; set; }
+        public List<InventoryItem>? Ninjas { get; set; }
 
     }
 }
