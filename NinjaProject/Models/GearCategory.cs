@@ -1,6 +1,6 @@
 ﻿namespace NinjaApplication.Models
 {
-    public enum EquipmentCategory
+    public enum GearCategory
     {
         Head,
         Chest,
