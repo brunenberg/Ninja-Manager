@@ -23,7 +23,7 @@ namespace NinjaApplication.Models
 
         [Required]
         [Column("category")]
-        public EquipmentCategory Category { get; set; }
+        public GearCategory Category { get; set; }
 
         [Required]
         [Range(0, int.MaxValue)]
