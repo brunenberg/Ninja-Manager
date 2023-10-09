@@ -16,6 +16,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\wbrun\source\repos\NinjaProject\prg5-eindopdracht-2324-wouter-joris\NinjaProject
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/wbrun/source/repos/NinjaProject/prg5-eindopdracht-2324-wouter-joris/NinjaProject/Views/Gear/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VhclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/wbrun/source/repos/NinjaProject/prg5-eindopdracht-2324-wouter-joris/NinjaProject/Views/Gear/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VhclxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/wbrun/source/repos/NinjaProject/prg5-eindopdracht-2324-wouter-joris/NinjaProject/Views/Gear/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VhclxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/wbrun/source/repos/NinjaProject/prg5-eindopdracht-2324-wouter-joris/NinjaProject/Views/Gear/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VhclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/wbrun/source/repos/NinjaProject/prg5-eindopdracht-2324-wouter-joris/NinjaProject/Views/Gear/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VhclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/wbrun/source/repos/NinjaProject/prg5-eindopdracht-2324-wouter-joris/NinjaProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
