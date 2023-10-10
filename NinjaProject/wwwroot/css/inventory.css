@@ -1,0 +1,22 @@
+﻿.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.grid-statbox {
+    border: 2px solid #000;
+    width: 200px;
+    padding: 10px;
+}
+
+.img-grid-item {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+    width: 300px;
+    height: auto;
+}
