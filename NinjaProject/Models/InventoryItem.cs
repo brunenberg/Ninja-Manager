@@ -5,17 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace NinjaApplication.Models
 {
     [Table("inventory_item")]
-    [PrimaryKey("NinjaId", "GearId")]
     public class InventoryItem
     {
         [Key]
-        [Column("Ninja_id")]
+        [Column("ninja_id")]
         public int NinjaId { get; set; }
         public Ninja Ninja { get; set; }
 
         [Key]
-        [Column("Gear_id")]
+        [Column("gear_id")]
         public int GearId { get; set; }
         public Gear Gear { get; set; }
+
+        public int PricePaid { get; set; }
     }
 }
