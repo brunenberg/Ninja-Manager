@@ -1,12 +1,14 @@
-﻿namespace NinjaApplication.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NinjaApplication.Models
 {
-    public enum GearCategory
+    [Table("gear_category")]
+    public class GearCategory
     {
-        Head,
-        Chest,
-        Hand,
-        Feet,
-        Ring,
-        Necklace
+        [Key]
+        [Column("category")]
+        public string Category { get; set; }
     }
 }

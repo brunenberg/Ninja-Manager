@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace NinjaApplication.Models
 {
     [Table("ninja")]
-    [PrimaryKey("Id")]
     public class Ninja
     {
         [Key]
