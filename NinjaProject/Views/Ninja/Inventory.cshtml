@@ -15,42 +15,17 @@
 
 
 <div class="grid-container">
+    @foreach (var item in Model.Inventory)
+    {
     <div class="grid-statbox">
-        Hands: </br>
-        Strength: </br>
-        Agility: </br>
-        Intelligence:
+        @item.Gear.CategoryId: @item.Gear.Name <br>
+        Strength: @item.Gear.Strength <br>
+        Agility: @item.Gear.Agility <br>
+        Intelligence: @item.Gear.Intelligence
     </div>
-    <div class="grid-statbox">
-        Hands: </br>
-        Strength: </br>
-        Agility: </br>
-        Intelligence: 
-    </div>
-    <div class="grid-statbox">
-        Feet: </br>
-        Strength: </br>
-        Agility: </br>
-        Intelligence: 
-    </div>
+    }
     <img src="https://venturebeat.com/wp-content/uploads/2019/03/popdog-ninja.jpg?w=1200&strip=all" class="img-grid-item" />
-    <div class="grid-statbox">
-        Necklace: </br>
-        Strength: </br>
-        Agility: </br>
-        Intelligence: 
-    </div>
-    <div class="grid-statbox">
-        Chest: </br>
-        Strength: </br>
-        Agility: </br>
-        Intelligence: 
-    </div>
-    <div class="grid-statbox">
-        Ring: </br>
-        Strength: </br>
-        Agility: </br>
-        Intelligence: 
-    </div>
 </div>
+
+<button>Inventory leegmaken</button>
 

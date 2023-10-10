@@ -182,6 +182,7 @@ namespace NinjaProject.Controllers
             ViewData["TotalIntelligence"] = totalIntelligence;
             ViewData["TotalGearValue"] = totalGearValue;
 
+
             return View(ninja);
         }
 
