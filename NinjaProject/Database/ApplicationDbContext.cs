@@ -16,14 +16,34 @@ namespace NinjaProject.Database
         {
             builder.Entity<InventoryItem>(entity =>
             {
-                entity.HasOne(x => x.Ninja)
-                .WithMany(e => e.Inventory)
-                .HasForeignKey(x => x.NinjaId);
+                entity.HasKey(ii => new { ii.NinjaId, ii.GearId });
 
-                entity.HasOne(x => x.Gear)
-                .WithMany(e => e.Ninjas)
-                .HasForeignKey(x => x.GearId);
+                entity.HasOne(ii => ii.Ninja)
+                    .WithMany(n => n.Inventory)
+                    .HasForeignKey(ii => ii.NinjaId);
+
+                entity.HasOne(ii => ii.Gear)
+                    .WithMany(g => g.Ninjas)
+                    .HasForeignKey(ii => ii.GearId);
             });
+
+            builder.Entity<Gear>(entity =>
+            {
+                entity.HasOne(g => g.Category)
+                    .WithMany()
+                    .HasForeignKey(g => g.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Gear_GearCategory");
+            });
+
+
+
+            // Add other configurations as needed
+
+            base.OnModelCreating(builder);
+
         }
+
+
     }
 }

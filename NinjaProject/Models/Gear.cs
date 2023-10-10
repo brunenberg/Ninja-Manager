@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace NinjaApplication.Models
 {
     [Table("gear")]
-    [PrimaryKey("Id")]
     public class Gear
     {
         [Key]
@@ -17,30 +16,30 @@ namespace NinjaApplication.Models
         public string Name { get; set; }
 
         [Required]
-        [Range(1, int.MaxValue)]
+        [Range(0, int.MaxValue)]
         [Column("goldvalue")]
         public int GoldValue { get; set; }
 
         [Required]
-        [Column("category")]
-        public GearCategory Category { get; set; }
-
-        [Required]
-        [Range(0, int.MaxValue)]
+        [Range(int.MinValue, int.MaxValue)]
         [Column("strength")]
         public int Strength { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
+        [Range(int.MinValue, int.MaxValue)]
         [Column("intelligence")]
         public int Intelligence { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
+        [Range(int.MinValue, int.MaxValue)]
         [Column("agility")]
         public int Agility { get; set; }
 
-        public List<InventoryItem>? Ninjas { get; set; }
+        public string CategoryId { get; set; }
 
+        [ForeignKey("CategoryId")]
+        public GearCategory Category { get; set; }
+
+        public List<InventoryItem>? Ninjas { get; set; }
     }
 }
