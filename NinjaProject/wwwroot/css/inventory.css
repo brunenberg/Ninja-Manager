@@ -17,6 +17,10 @@
 .img-grid-item {
     grid-column: 2 / 3;
     grid-row: 1 / 4;
-    width: 300px;
+    width: 350px;
     height: auto;
+}
+
+p{
+    margin-bottom: 0;
 }

@@ -15,17 +15,28 @@
 
 
 <div class="grid-container">
-    @foreach (var item in Model.Inventory)
+    @for(int i = 1; i <= 6; i++)
     {
-    <div class="grid-statbox">
-        @item.Gear.CategoryId: @item.Gear.Name <br>
-        Strength: @item.Gear.Strength <br>
-        Agility: @item.Gear.Agility <br>
-        Intelligence: @item.Gear.Intelligence
-    </div>
+        <div class="grid-statbox">
+            @if(i <= Model.Inventory.Count)
+            {
+                var item = Model.Inventory[i - 1];
+                <p>@item.Gear.CategoryId: @item.Gear.Name</p>
+                <p>Strength: @item.Gear.Strength</p>
+                <p>Agility: @item.Gear.Agility</p>
+                <p>Intelligence: @item.Gear.Intelligence</p>
+            }
+            else
+            {
+                <p>Empty slot</p>
+            }
+        </div>
     }
     <img src="https://venturebeat.com/wp-content/uploads/2019/03/popdog-ninja.jpg?w=1200&strip=all" class="img-grid-item" />
 </div>
+
+
+
 
 <button>Inventory leegmaken</button>
 
