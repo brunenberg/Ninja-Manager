@@ -159,5 +159,32 @@ namespace NinjaProject.Controllers
         {
           return (_context.Ninjas?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public IActionResult Inventory(int id) {
+            var ninja = _context.Ninjas
+                .Include(n => n.Inventory) 
+                .ThenInclude(item => item.Gear)
+                .FirstOrDefault(n => n.Id == id);
+
+            if(ninja == null)
+            {
+                return NotFound(); 
+            }
+
+            int totalStrength = ninja.Inventory.Sum(item => item.Gear.Strength);
+            int totalAgility = ninja.Inventory.Sum(item => item.Gear.Agility);
+            int totalIntelligence = ninja.Inventory.Sum(item => item.Gear.Intelligence);
+
+            int totalGearValue = ninja.Inventory.Sum(item => item.Gear.GoldValue);
+
+            ViewData["TotalStrength"] = totalStrength;
+            ViewData["TotalAgility"] = totalAgility;
+            ViewData["TotalIntelligence"] = totalIntelligence;
+            ViewData["TotalGearValue"] = totalGearValue;
+
+
+            return View(ninja);
+        }
+
     }
 }
