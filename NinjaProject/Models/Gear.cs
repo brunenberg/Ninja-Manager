@@ -35,10 +35,10 @@ namespace NinjaApplication.Models
         [Column("agility")]
         public int Agility { get; set; }
 
-        public string CategoryId { get; set; }
+        [ForeignKey("Category")]
+        public string? CategoryId { get; set; }
+        public GearCategory? Category { get; set; }
 
-        [ForeignKey("CategoryId")]
-        public GearCategory Category { get; set; }
 
         public List<InventoryItem>? Ninjas { get; set; }
     }

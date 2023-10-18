@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NinjaApplication.Models;
 using NinjaProject.Database;
@@ -46,24 +41,40 @@ namespace NinjaProject.Controllers
         }
 
         // GET: Gear/Create
-        public IActionResult Create()
-        {
+        public IActionResult Create() {
+            var categories = _context.GearCategories.Select(cat => cat.Category).ToList();
+            ViewBag.Categories = categories;
+
             return View();
         }
+
 
         // POST: Gear/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,GoldValue,Category,Strength,Intelligence,Agility")] Gear gear)
+        public async Task<IActionResult> Create([Bind("Id,Name,GoldValue,CategoryId,Strength,Intelligence,Agility")] Gear gear)
         {
+            Console.WriteLine("Id: " + gear.Id);
+            Console.WriteLine("Name: " + gear.Name);
+            Console.WriteLine("GoldValue: " + gear.GoldValue);
+            Console.WriteLine("CategoryId: " + gear.CategoryId);
+            Console.WriteLine("Strength: " + gear.Strength);
+            Console.WriteLine("Intelligence: " + gear.Intelligence);
+            Console.WriteLine("Agility: " + gear.Agility);
             if (ModelState.IsValid)
             {
                 _context.Add(gear);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            } else
+            {
+                Console.WriteLine("Gear is invalid");
             }
+
+            var categories = _context.GearCategories.Select(cat => cat.Category).ToList();
+            ViewBag.Categories = categories;
             return View(gear);
         }
 
