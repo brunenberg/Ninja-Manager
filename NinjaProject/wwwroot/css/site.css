@@ -14,5 +14,44 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://i.pinimg.com/originals/ab/5e/2f/ab5e2f3e85da65024f01aba92331c882.gif");
 }
+
+table{
+    border-collapse: separate;
+    border-spacing: 10px; /* Afstand tussen de tabelcellen */
+}
+
+table td, table th {
+    background-color: white !important;
+    padding: 10px; /* Ruimte binnen de tabelcellen */
+    border-radius: 10px; /* Afgeronde hoeken */
+    border: 1px solid #ccc; /* Optioneel: voeg een rand toe voor een visuele scheiding */
+}
+
+.custom-font-size{
+    font-size: 2vh;
+}
+
+a.asp-button {
+    display: inline-block;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a.asp-button:hover {
+    background-color: #0056b3;
+}
+
+.red{
+    background-color: red !important;
+}
+
