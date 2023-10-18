@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using NinjaApplication.Models;
 using NinjaProject.Database;
+using NinjaProject.ViewModels;
 
 namespace NinjaProject.Controllers
 {
@@ -184,6 +187,125 @@ namespace NinjaProject.Controllers
 
 
             return View(ninja);
+        }
+
+            public IActionResult Shop(int id, string categoryId = "All") {
+            var ninja = _context.Ninjas
+                .Include(n => n.Inventory)
+                .ThenInclude(item => item.Gear)
+                .FirstOrDefault(n => n.Id == id);
+
+            if(ninja == null)
+            {
+                return NotFound();
+            }
+
+            var allAvailableItems = _context.Gears.ToList();
+
+            if(categoryId != "All")
+            {
+                allAvailableItems = allAvailableItems.Where(item => item.CategoryId == categoryId).ToList();
+            } 
+
+            var viewModel = new ShopViewModel
+            {
+                Ninja = ninja,
+                GearList = allAvailableItems
+            };
+
+            var categories = _context.GearCategories.Select(cat => cat.Category).ToList();
+            ViewBag.Categories = categories;
+
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult Sell(int ninjaId, int itemId) {
+
+            var ninja = _context.Ninjas
+                .Include(n => n.Inventory)
+                .FirstOrDefault(n => n.Id == ninjaId);
+
+            if(ninja == null)
+            {
+                return NotFound("Ninja not found.");
+            }
+
+            Console.WriteLine($"Ninja {ninjaId} Item {itemId}");
+
+            if(ninja.Inventory != null)
+            {
+                var itemToSell = ninja.Inventory.FirstOrDefault(item => item.GearId == itemId);
+                if(itemToSell != null)
+                {
+                    ninja.Inventory.Remove(itemToSell);                
+                    ninja.Gold += itemToSell.PricePaid;
+                    _context.SaveChanges();
+                    return RedirectToAction("Shop", new { id = ninjaId });
+
+                }
+                else
+                {
+                    return NotFound("Item not found.");
+                }
+            }
+            else
+            {
+                return NotFound("Ninja inventory is null.");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Buy(int ninjaId, int itemId) {
+            var ninja = _context.Ninjas
+                .Include(n => n.Inventory)
+                .FirstOrDefault(n => n.Id == ninjaId);
+
+            if(ninja == null)
+            {
+                return NotFound("Ninja not found.");
+            }
+
+            var itemToBuy = _context.Gears.FirstOrDefault(item => item.Id == itemId);
+
+            if(itemToBuy == null)
+            {
+                return NotFound("Item not found.");
+            }
+
+            if(ninja.Gold < itemToBuy.GoldValue)
+            {
+                return RedirectToAction("Shop", new { id = ninjaId });
+            }
+
+            foreach(var item in ninja.Inventory)
+            {
+                var gearId = item.GearId;
+                var gear = _context.Gears.FirstOrDefault(g => g.Id == gearId);
+                var cat = gear.CategoryId;
+
+                if(cat == itemToBuy.CategoryId)
+                {
+                    return RedirectToAction("Shop", new { id = ninjaId });
+                }
+            }
+            
+            var existingItem = ninja.Inventory.FirstOrDefault(item => item.Gear.CategoryId == itemToBuy.CategoryId);
+
+            var inventoryItem = new InventoryItem
+            {
+                NinjaId = ninja.Id,
+                GearId = itemToBuy.Id,
+                PricePaid = itemToBuy.GoldValue
+            };
+
+            ninja.Inventory.Add(inventoryItem);
+            ninja.Gold -= itemToBuy.GoldValue;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Shop", new { id = ninjaId });
         }
 
     }

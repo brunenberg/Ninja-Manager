@@ -24,3 +24,11 @@
 p{
     margin-bottom: 0;
 }
+
+.button{
+    padding: 5px;
+    background-color: darkgray;
+    border: 3px solid black;
+}
+
+

@@ -1,0 +1,102 @@
+﻿@model NinjaProject.ViewModels.ShopViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/shop.css" />
+</head>
+
+<h1>Shop for @Model.Ninja.Name</h1>
+
+<p>Gold in wallet: <strong>@Model.Ninja.Gold</strong></p>
+
+<fieldset>
+    Filter on category:
+    <form method="get" asp-controller="Ninja" asp-action="Shop" asp-route-id="@Model.Ninja.Id">
+        <select name="categoryId" onchange="this.form.submit()">
+            <option value="" selected disabled>Select a Category</option>
+            <option value="All">All categories</option>
+            @foreach(var category in ViewBag.Categories)
+            {
+                <option value="@category">@category</option>
+            }
+        </select>
+    </form>
+</fieldset>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Item
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Strength
+            </th>
+            <th>
+                Agility
+            </th>
+            <th>
+                Intelligence
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.GearList)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.GoldValue
+                </td>
+                <td>
+                    @item.CategoryId
+                </td>
+                <td>
+                    @item.Strength
+                </td>
+                <td>
+                    @item.Agility
+                </td>
+                <td>
+                    @item.Intelligence
+                </td>
+                <td>
+                    @if(Model.Ninja.Inventory.Any(inventoryItem => inventoryItem.GearId == item.Id))
+                    {                        
+                        <form method="post" action="@Url.Action("Sell", "Ninja")">
+                            <input type="hidden" name="ninjaId" value="@Model.Ninja.Id" />
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <button type="submit" class="SellButton">Sell</button>
+                        </form>
+
+                    }
+                    else
+                    {
+                        <form method="post" action="@Url.Action("Buy", "Ninja")">
+                            <input type="hidden" name="ninjaId" value="@Model.Ninja.Id" />
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <button type="submit" class="BuyButton">Buy</button>
+                        </form>
+                    }
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Inventory", "Ninja", new { id = Model.Ninja.Id })">Back to Ninja Inventory</a>

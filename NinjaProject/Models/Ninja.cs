@@ -21,5 +21,6 @@ namespace NinjaApplication.Models
         public int Gold { get; set; }
 
         public List<InventoryItem>? Inventory { get; set; }
+
     }
 }
