@@ -12,6 +12,7 @@ namespace NinjaProject.Database
         public DbSet<Ninja> Ninjas { get; set; }
         public DbSet<Gear> Gears { get; set; }
         public DbSet<GearCategory> GearCategories { get; set; }
+        public DbSet<InventoryItem> InventoryItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

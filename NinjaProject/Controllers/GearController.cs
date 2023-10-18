@@ -150,21 +150,39 @@ namespace NinjaProject.Controllers
         // POST: Gear/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Gears == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Gears'  is null.");
+        public async Task<IActionResult> DeleteConfirmed(int id) {
+            if (_context.Gears == null) {
+                return Problem("Entity set 'ApplicationDbContext.Gears' is null.");
             }
+
             var gear = await _context.Gears.FindAsync(id);
-            if (gear != null)
-            {
+            if (gear != null) {
+                var ninjaIdsWithGear = await _context.InventoryItems
+                    .Where(item => item.GearId == id)
+                    .Select(item => item.NinjaId)
+                    .ToListAsync();
+
+                foreach (var ninjaId in ninjaIdsWithGear) {
+                    var totalPricePaidByNinja = _context.InventoryItems
+                        .Where(item => item.GearId == id && item.NinjaId == ninjaId)
+                        .Sum(item => item.PricePaid);
+
+                    var ninja = await _context.Ninjas.FindAsync(ninjaId);
+                    if (ninja != null) {
+                        ninja.Gold += totalPricePaidByNinja;
+                    }
+                }
+
                 _context.Gears.Remove(gear);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return NotFound();
         }
+
+
 
         private bool GearExists(int id)
         {
