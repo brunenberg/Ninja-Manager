@@ -308,5 +308,28 @@ namespace NinjaProject.Controllers
             return RedirectToAction("Shop", new { id = ninjaId });
         }
 
+        [HttpPost]
+        public IActionResult clearInventory(int ninjaId) {
+            var ninja = _context.Ninjas
+                .Include(n => n.Inventory)
+                .FirstOrDefault(n => n.Id == ninjaId);
+
+            if(ninja == null)
+            {
+                return NotFound("Ninja not found.");
+            }
+
+            foreach(var item in ninja.Inventory)
+            {
+                ninja.Gold += item.PricePaid;
+            }   
+            ninja.Inventory.Clear();
+            
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Inventory", new { id = ninjaId });
+        }
+
     }
 }
