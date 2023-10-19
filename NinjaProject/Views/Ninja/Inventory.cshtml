@@ -16,21 +16,23 @@
 </div>
 
 <div class="grid-container">
-    @for(int i = 1; i <= 6; i++)
-    {
+
+    @{
+        var categories = ViewData["Categories"] as List<string>;
+    }
+
+    @foreach(var category in categories) {
         <div class="grid-statbox">
-            @if(i <= Model.Inventory.Count)
-            {
-                var item = Model.Inventory[i - 1];
-                <p>@item.Gear.CategoryId: @item.Gear.Name</p>
+        <p>@category:</P>
+        
+        @foreach(var item in Model.Inventory) {
+            if (item.Gear.CategoryId == category) {
+                <p> @item.Gear.Name</p>
                 <p>Strength: @item.Gear.Strength</p>
                 <p>Agility: @item.Gear.Agility</p>
                 <p>Intelligence: @item.Gear.Intelligence</p>
             }
-            else
-            {
-                <p>Empty slot</p>
-            }
+        }
         </div>
     }
     <img src="https://ih1.redbubble.net/image.5015425719.0987/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg" class="img-grid-item" />
