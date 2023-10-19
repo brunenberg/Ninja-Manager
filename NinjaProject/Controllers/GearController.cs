@@ -81,6 +81,8 @@ namespace NinjaProject.Controllers
         // GET: Gear/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var categories = _context.GearCategories.Select(cat => cat.Category).ToList();
+            ViewBag.Categories = categories;
             if (id == null || _context.Gears == null)
             {
                 return NotFound();
@@ -99,8 +101,10 @@ namespace NinjaProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,GoldValue,Category,Strength,Intelligence,Agility")] Gear gear)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,GoldValue,CategoryId,Strength,Intelligence,Agility")] Gear gear)
         {
+            var categories = _context.GearCategories.Select(cat => cat.Category).ToList();
+            ViewBag.Categories = categories;
             if (id != gear.Id)
             {
                 return NotFound();
