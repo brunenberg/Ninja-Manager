@@ -9,9 +9,10 @@
 }
 
 .grid-statbox {
-    border: 2px solid #000;
     width: 200px;
     padding: 10px;
+    background-color: white !important;
+    border-radius: 10px !important;
 }
 
 .img-grid-item {
@@ -31,4 +32,31 @@ p{
     border: 3px solid black;
 }
 
+.overview-box{
+    width: 35vw;
+    background-color: white;
+    border-radius: 10px !important;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
+    margin-inline: auto;
+}
+
+.inventory-buttons a,
+.inventory-buttons button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.inventory-buttons a:hover,
+.inventory-buttons button:hover {
+    background-color: #0056b3;
+}
 

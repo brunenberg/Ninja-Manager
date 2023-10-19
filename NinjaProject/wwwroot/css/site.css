@@ -22,14 +22,14 @@ body {
 
 table{
     border-collapse: separate;
-    border-spacing: 10px; /* Afstand tussen de tabelcellen */
+    border-spacing: 10px;
 }
 
 table td, table th {
     background-color: white !important;
-    padding: 10px; /* Ruimte binnen de tabelcellen */
-    border-radius: 10px; /* Afgeronde hoeken */
-    border: 1px solid #ccc; /* Optioneel: voeg een rand toe voor een visuele scheiding */
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc; 
 }
 
 .custom-font-size{
@@ -55,3 +55,10 @@ a.asp-button:hover {
     background-color: red !important;
 }
 
+.inventory-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 15vw;
+    margin-inline: auto;
+    margin-top: 10px;
+}
