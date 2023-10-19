@@ -185,6 +185,7 @@ namespace NinjaProject.Controllers
             ViewData["TotalIntelligence"] = totalIntelligence;
             ViewData["TotalGearValue"] = totalGearValue;
 
+            ViewData["Categories"] = _context.GearCategories.Select(cat => cat.Category).ToList();
 
             return View(ninja);
         }
