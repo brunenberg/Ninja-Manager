@@ -154,7 +154,10 @@ namespace NinjaProject.Controllers
 
             if(amountOfNinjasWithGear > 0)
             {
-                TempData["ninjaHasItem"] = $"Are you sure you want to delete this item? currently {amountOfNinjasWithGear} ninja(s) have this item equiped.";
+                TempData["ninjaHasItem"] = $"Are you sure you want to delete this item? currently {amountOfNinjasWithGear} ninja(s) have this item equipped.";
+            } else
+            {
+                TempData["noNinjaHasItem"] = "No ninja's have this item equipped";
             }
 
             return View(gear);
