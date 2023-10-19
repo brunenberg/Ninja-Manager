@@ -4,6 +4,14 @@
     <link rel="stylesheet" href="~/css/shop.css" />
 </head>
 
+@if(TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
 <h1>Shop for @Model.Ninja.Name</h1>
 
 <p>Gold in wallet: <strong>@Model.Ninja.Gold</strong></p>

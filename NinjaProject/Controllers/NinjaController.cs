@@ -276,8 +276,10 @@ namespace NinjaProject.Controllers
 
             if(ninja.Gold < itemToBuy.GoldValue)
             {
+                TempData["ErrorMessage"] = "You don't have enough gold to buy this item.";
                 return RedirectToAction("Shop", new { id = ninjaId });
             }
+
 
             foreach(var item in ninja.Inventory)
             {
