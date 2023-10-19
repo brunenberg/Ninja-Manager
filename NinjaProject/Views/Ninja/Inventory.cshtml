@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="~/css/inventory.css" />
 </head>
 
+<div class="overview-box">
 <p>Ninja: @Model.Name</p>
 <p>Gold in wallet: @Model.Gold</p>
 </br>
@@ -12,7 +13,7 @@
 </br>
 
 <p>Gear value: @ViewData["TotalGearValue"]</p>
-
+</div>
 
 <div class="grid-container">
     @for(int i = 1; i <= 6; i++)
@@ -32,12 +33,16 @@
             }
         </div>
     }
-    <img src="https://venturebeat.com/wp-content/uploads/2019/03/popdog-ninja.jpg?w=1200&strip=all" class="img-grid-item" />
+    <img src="https://ih1.redbubble.net/image.5015425719.0987/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg" class="img-grid-item" />
+</div>
+
+<div class="inventory-buttons">
+    <a asp-action="Shop" asp-route-id="@Model.Id" class="button">Shop</a>
+    <form method="post" action="@Url.Action("ClearInventory", "Ninja")">
+        <input type="hidden" name="ninjaId" value="@Model.Id" />
+        <button type="submit" class="red">Clear inventory</button>
+    </form>
 </div>
 
 
-<a asp-action="Shop" asp-route-id="@Model.Id" class="button">Shop</a>
-<form method="post" action="@Url.Action("ClearInventory", "Ninja")">
-    <input type="hidden" name="ninjaId" value="@Model.Id" />
-    <button type="submit">Clear inventory</button>
-</form>
+
