@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 
 #nullable disable
 
-namespace NinjaProject.Migrations
+namespace NinjaLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231009120719_defineInCode")]
-    partial class defineInCode
+    [Migration("20231009104228_initialMigration")]
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,79 +28,67 @@ namespace NinjaProject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Agility")
-                        .HasColumnType("int")
-                        .HasColumnName("agility");
+                        .HasColumnType("int");
 
                     b.Property<int>("Category")
-                        .HasColumnType("int")
-                        .HasColumnName("category");
+                        .HasColumnType("int");
 
                     b.Property<int>("GoldValue")
-                        .HasColumnType("int")
-                        .HasColumnName("goldvalue");
+                        .HasColumnType("int");
 
                     b.Property<int>("Intelligence")
-                        .HasColumnType("int")
-                        .HasColumnName("intelligence");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("name");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Strength")
-                        .HasColumnType("int")
-                        .HasColumnName("strength");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("gear");
+                    b.ToTable("Gears");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.InventoryItem", b =>
                 {
                     b.Property<int>("NinjaId")
-                        .HasColumnType("int")
-                        .HasColumnName("Ninja_id");
+                        .HasColumnType("int");
 
                     b.Property<int>("GearId")
-                        .HasColumnType("int")
-                        .HasColumnName("Gear_id");
+                        .HasColumnType("int");
 
                     b.HasKey("NinjaId", "GearId");
 
                     b.HasIndex("GearId");
 
-                    b.ToTable("inventory_item");
+                    b.ToTable("InventoryItem");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.Ninja", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Gold")
-                        .HasColumnType("int")
-                        .HasColumnName("gold");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("name");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ninja");
+                    b.ToTable("Ninjas");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.InventoryItem", b =>

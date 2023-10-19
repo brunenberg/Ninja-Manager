@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NinjaApplication.Models;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 
 namespace NinjaProject.Controllers
 {

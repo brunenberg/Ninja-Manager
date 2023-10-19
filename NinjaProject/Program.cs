@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 
 namespace NinjaProject
 {

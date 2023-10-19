@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 
 #nullable disable
 
-namespace NinjaProject.Migrations
+namespace NinjaLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231019104646_SeedData")]
-    partial class SeedData
+    [Migration("20231009120719_defineInCode")]
+    partial class defineInCode
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,8 +37,9 @@ namespace NinjaProject.Migrations
                         .HasColumnType("int")
                         .HasColumnName("agility");
 
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Category")
+                        .HasColumnType("int")
+                        .HasColumnName("category");
 
                     b.Property<int>("GoldValue")
                         .HasColumnType("int")
@@ -59,34 +60,18 @@ namespace NinjaProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("gear");
-                });
-
-            modelBuilder.Entity("NinjaApplication.Models.GearCategory", b =>
-                {
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("category");
-
-                    b.HasKey("Category");
-
-                    b.ToTable("gear_category");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.InventoryItem", b =>
                 {
                     b.Property<int>("NinjaId")
                         .HasColumnType("int")
-                        .HasColumnName("ninja_id");
+                        .HasColumnName("Ninja_id");
 
                     b.Property<int>("GearId")
                         .HasColumnType("int")
-                        .HasColumnName("gear_id");
-
-                    b.Property<int>("PricePaid")
-                        .HasColumnType("int");
+                        .HasColumnName("Gear_id");
 
                     b.HasKey("NinjaId", "GearId");
 
@@ -116,16 +101,6 @@ namespace NinjaProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ninja");
-                });
-
-            modelBuilder.Entity("NinjaApplication.Models.Gear", b =>
-                {
-                    b.HasOne("NinjaApplication.Models.GearCategory", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .HasConstraintName("FK_Gear_GearCategory");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.InventoryItem", b =>

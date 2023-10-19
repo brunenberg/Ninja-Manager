@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace NinjaProject.Migrations
+namespace NinjaLibrary.Migrations
 {
     /// <inheritdoc />
     public partial class ImprovedMigration : Migration

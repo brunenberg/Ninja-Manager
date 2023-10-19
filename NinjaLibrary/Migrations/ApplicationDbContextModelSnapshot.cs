@@ -2,20 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 
 #nullable disable
 
-namespace NinjaProject.Migrations
+namespace NinjaLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231010102549_ImprovedMigration")]
-    partial class ImprovedMigration
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +35,6 @@ namespace NinjaProject.Migrations
                         .HasColumnName("agility");
 
                     b.Property<string>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("GoldValue")
@@ -124,7 +120,6 @@ namespace NinjaProject.Migrations
                     b.HasOne("NinjaApplication.Models.GearCategory", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .IsRequired()
                         .HasConstraintName("FK_Gear_GearCategory");
 
                     b.Navigation("Category");

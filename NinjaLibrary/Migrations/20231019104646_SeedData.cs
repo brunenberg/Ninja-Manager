@@ -1,10 +1,9 @@
-﻿using Humanizer;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.IdentityModel.Tokens;
 
 #nullable disable
 
-namespace NinjaProject.Migrations
+namespace NinjaLibrary.Migrations
 {
     /// <inheritdoc />
     public partial class SeedData : Migration

@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 
 #nullable disable
 
-namespace NinjaProject.Migrations
+namespace NinjaLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231009104228_initialMigration")]
-    partial class initialMigration
+    [Migration("20231010102549_ImprovedMigration")]
+    partial class ImprovedMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,67 +28,106 @@ namespace NinjaProject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Agility")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("agility");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("GoldValue")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("goldvalue");
 
                     b.Property<int>("Intelligence")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("intelligence");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("name");
 
                     b.Property<int>("Strength")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("strength");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Gears");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("gear");
+                });
+
+            modelBuilder.Entity("NinjaApplication.Models.GearCategory", b =>
+                {
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("category");
+
+                    b.HasKey("Category");
+
+                    b.ToTable("gear_category");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.InventoryItem", b =>
                 {
                     b.Property<int>("NinjaId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ninja_id");
 
                     b.Property<int>("GearId")
+                        .HasColumnType("int")
+                        .HasColumnName("gear_id");
+
+                    b.Property<int>("PricePaid")
                         .HasColumnType("int");
 
                     b.HasKey("NinjaId", "GearId");
 
                     b.HasIndex("GearId");
 
-                    b.ToTable("InventoryItem");
+                    b.ToTable("inventory_item");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.Ninja", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Gold")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("gold");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ninjas");
+                    b.ToTable("ninja");
+                });
+
+            modelBuilder.Entity("NinjaApplication.Models.Gear", b =>
+                {
+                    b.HasOne("NinjaApplication.Models.GearCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Gear_GearCategory");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("NinjaApplication.Models.InventoryItem", b =>

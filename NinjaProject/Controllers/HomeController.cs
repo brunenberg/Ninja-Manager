@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 using NinjaProject.Models;
 using System.Diagnostics;
 

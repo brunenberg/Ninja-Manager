@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using NinjaApplication.Models;
-using NinjaProject.Database;
+using NinjaLibrary.Database;
 using NinjaProject.ViewModels;
 
 namespace NinjaProject.Controllers
