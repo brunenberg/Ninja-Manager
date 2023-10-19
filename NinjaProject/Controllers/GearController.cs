@@ -148,6 +148,18 @@ namespace NinjaProject.Controllers
                 return NotFound();
             }
 
+            int amountOfNinjasWithGear = await _context.InventoryItems
+                .Where(item => item.GearId == id)
+                .CountAsync();
+
+            if(amountOfNinjasWithGear > 0)
+            {
+                TempData["ninjaHasItem"] = $"Are you sure you want to delete this item? currently {amountOfNinjasWithGear} ninja(s) have this item equipped.";
+            } else
+            {
+                TempData["noNinjaHasItem"] = "No ninja's have this item equipped";
+            }
+
             return View(gear);
         }
 
