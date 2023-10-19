@@ -55,3 +55,10 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+@if(TempData.ContainsKey("ninjaHasItem"))
+{
+    <div class="alert alert-danger margin-top">
+        @TempData["ninjaHasItem"]
+    </div>
+}
